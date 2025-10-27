@@ -1,0 +1,267 @@
+
+Systems Analysis and Design: A Comprehensive Evaluation
+
+Executive Summary
+
+This report provides a comprehensive examination of Systems Analysis and Design (SAD) and its contribution to software development. It explores various methodologies, lifecycle models, and information systems while evaluating their applications in modern software engineering practices.
+
+
+1. Introduction
+
+Systems Analysis and Design (SAD) is a structured process that refers to understanding and specifying in detail what a new information system should accomplish. This involves collecting and interpreting facts, identifying the problems, and decomposing a system into its components, which is called analysis. Then, it involves creating the blueprints for how that system will be constructed to achieve the goal, such as planning a new business system or replacing an existing system by defining its components or modules to satisfy the specific requirements (Dennis, Wixom and Roth, 2015).
+
+2. The Contribution of Systems Analysis and Design to the Software Development Life Cycle
+
+The contribution of SAD to the Software Development Life Cycle (SDLC) is fundamental. The Software Development Life Cycle (SDLC) is the application of standard business practices to building software applications (Sommerville, 2016). System Analysis and Design (SAD) contributes to the Software Development Life Cycle (SDLC) by defining the "what" and "how" of a software system through its distinct phases. Its key contributions are:
+
+2.1 Establishing the Foundation
+
+System analysis lays the groundwork for the rest of the software development process by presenting a suggested resolution to a specified issue. System analysis entails dismantling a system to discover its functions, roles, and the context in which it will be expected to operate because analysis implies "to take apart." The duties of conducting a feasibility study and requirements engineering are included in this activity. As a result, system analysis is crucial to the success of any software project in terms of utility and delivery within predetermined constraints (Kendall and Kendall, 2014).
+
+2.2 Creating a Clear Blueprint for Development
+
+Once the requirements are gathered, the design phase can get started. This is where outlining the system architecture, creating data models, and sketching out the user interface and process flows takes place. This is basically creating a blueprint; this gives developers a clear target to aim for, which keeps the entire development phase efficient and on-track.
+
+2.3 Improving Quality & Errors
+
+SAD is used to identify logical errors, inconsistencies and potential performance bottlenecks early on, which can improve overall quality of a system and reduce the cost too (Pressman and Maxim, 2020).
+
+2.4 Facilitating Communication
+
+SAD uses standardized modelling techniques to analyse, like UML diagrams, become a shared language that everyone—from stakeholders to developers—can understand. This clarity is crucial when business needs evolve, as the thorough documentation makes it much easier to implement changes down the line (Booch, Rumbaugh and Jacobson, 2005).
+
+3. Components of Systems Analysis
+
+The fundamental components of system analysis include:
+
+- Input – Whatever the user will give to the system it can be anything as in number, so the system can get started.
+
+- Process – After the system started by the input- so the input will start to get processed in the programmed way.
+
+- Output – The ultimate output that the user will get after the processing.
+
+These three components form the basis of any information system and must be carefully analyzed during the system development process (Whitten and Bentley, 2007).
+
+
+
+4. Different Approaches to System Analysis and Design
+
+ 4.1 Architectural Design
+Describes the views, models, behaviour, and structure of the system (Bass, Clements and Kazman, 2012).
+
+4.2 Logical Design
+To represent the data flow, inputs and outputs of the system. Examples include ER Diagrams (Entity Relationship Diagrams).
+
+
+4.3 Physical Design
+Defined as the process of the user giving information or input to the system and getting a response from the system. Data modelling and storing procedure, how data moves through the system, how data is validated, secured and/or transformed as it flows through and out of the system.
+
+
+
+Fig 1. Approaches to System Analysis & Design
+
+5. System Design Requirements
+
+System requirements are clearly articulated statements of what a system must be able to do in order to satisfy stakeholder needs and requirements and are derived from business requirements and user requirements (IEEE, 2011). They should be defined in two clear categories:
+
+5.1 Functional Requirements
+Functional requirements describe the required behaviour and functions of the system (Sommerville, 2016).
+
+5.2 Non-Functional Requirements
+Non-functional requirements describe specific criteria that can be used to judge the operation of a system e.g. performance, security, availability. Performance, Reliability, Availability and Scalability (PRAS) are all run-time quality attributes that need to be carefully designed and implemented in order to make a system usable. Any component, small or large, can impact the behavior of a system directly or indirectly by its effect on other components (Chung et al., 2012).
+
+
+ Fig 2. System Design Requirements Evaluation
+
+6. Traditional Software Lifecycle Approaches
+
+This methodology was designed in the late 1960s and it had a great impact on the data processing community (Royce, 1970). The Traditional SDLC has the following steps:
+
+- Feasibility study - Looks at the present system and its environment
+
+- System investigation - Aims to detail facts such as, functional requirements, problems of the present working methods etc.
+
+- Systems analysis – This is an attempt to understand all aspects of the present system and why it developed as it did, and eventually indicate how things might be improved by any new system
+
+- Systems design – This involves the design of both the computer and manual parts of the system
+
+- Implementation - The major aspect of this phase is quality control - testing and documentation
+
+- Review and maintenance - This stage occurs once the system is operational and aims to ensure the continued efficient running of the system.
+
+After some time the operational system is no longer appropriate and should be replaced - the SDLC then finishes and the life cycle begins again (Kendall and Kendall, 2014).
+
+
+    
+  Fig 3. Traditional SDLC
+
+7. Evaluation of Software Development Lifecycle Models
+
+Software development life cycle (SDLC) is a series of phases that provide a common understanding of the software building process (Sommerville, 2016).
+
+
+
+7.1 Waterfall Model
+
+A linear sequential flow through the phases of software implementation progress flowing steadily downwards as if it were a waterfall. One step has to be completed in order to start the next step in the model & going to the previous step is not also possible.The earliest formal approach in software development, documented by Winston W. Royce in 1970, is the Waterfall model.
+
+
+       Fig 4. WaterFall Model (Source: GeeksforGeeks)
+
+7.2 V-Shaped Model
+
+It is an extension of the waterfall model. Steps are bent upwards after the implementation and coding phase, to form the typical V shape. Software requirements are clearly defined and well known along with development technologies and tools (Forsberg and Mooz, 1991).
+
+ Fig 5. V-Shaped Model (Source: GeeksforGeeks)
+
+
+
+7.3 Spiral Method (SDM)
+
+It is combining elements of both design and prototyping-in-stages, in an effort to combine advantages of top-down and bottom-up concepts. Mainly used for large, expensive, and complicated projects. This model uses many of the same phases as the waterfall model, in essentially the same order, separated by planning, risk assessment, and the building of prototypes and simulations (Boehm, 1988).
+
+
+ Fig 6. Spiral Model (Source: GeeksforGeeks)
+
+7.4 Agile Development
+
+It is basicallt on iterative and incremental development, where requirements and solutions evolve through collaboration between cross-functional teams. It can be used with any type of project specially when the customer needs to have some functional requirements ready within a short time period and the requirements are not clear enough. This will enable more valuable and workable pieces for software early which also increases customer satisfaction as it should be interactive with the customers (Beck et al., 2001).
+
+ Fig 7.  Agile Development Model (Source: GeeksforGeeks)
+
+
+
+
+      Fig 8. SDLC Models Comparative Analysis
+
+
+ 8. Hard and Soft System Methodologies
+
+8.1 Object-Oriented Modelling (OOM)
+
+Object-oriented modeling (OOM) is an approach to designing and visualizing a software application using objects, which are instances of classes containing stored values (instance variables). This method is employed at the beginning of the software development life cycle when adopting an object-oriented approach. Object-oriented modelling allows for object identification and communication while supporting data abstraction, inheritance and encapsulation (Booch, Rumbaugh and Jacobson, 2005).
+
+8.2 Hard Systems Thinking
+
+Hard System Thinking enables us to look at parts of the system in greater depth, linked closely with organization's well-defined goals and is useful for designing solutions that achieve those goals and objectives-which can be expressed in quantitative terms allowing the development of mathematical models. It assumes that every system can be disaggregated into a number of subsystems (Checkland, 1999).
+
+Fig 9: Hard Systems Methodology (Adapted from: Burge Hughes Walsh, n.d)
+
+ 8.3 Soft Systems Methodology
+
+This is a strategy for analysing complex problem situations and identifying acceptable improvements - this is attained through a multistage process of information gathering, description, analysis and debate (Checkland and Poulter, 2006).
+
+Fig 10. Soft Systems Methodology (Adapted from: Kaba and Said, 2024)
+9. Types of Information Systems
+
+An Information System (IS) is a collection of hardware, software and telecommunications networks that people build and use to collect, process, create, and distribute useful data (Laudon and Laudon, 2020).
+
+9.1 Business Information Systems
+
+Business Information Systems, often utilizes computer systems and technology to provide information that firms utilize to operate themselves successfully and efficiently. Example: Online air ticket booking system.
+
+9.2 Decision Support System
+
+A decision support system (DSS) is a computer program application used to improve a company's decision-making capabilities, which analyses large amounts of data and presents an organization with the best possible options available, may include an expert system or artificial intelligence (AI) (Power, 2002).
+
+9.3 Management Information Systems (MIS)
+
+MIS is the use of information technology, people, and business processes to record, store and process data to produce information that decision makers can use to make day to day decisions (O'Brien and Marakas, 2011).
+
+9.4 Transaction Processing Systems (TPS)
+
+A transaction processing system is a business tool consisting of computer hardware and software that hosts an application whose purpose is to carry out transactions for running or undertaking business (Laudon and Laudon, 2020).
+
+9.5 Data Warehouse Systems
+
+Data warehouse systems use back-end tools and utilities to populate and refresh their data. Key components include:
+
+- Data extraction: This typically gathers data from multiple, heterogeneous and external sources.
+- Data cleaning: Detects errors in the data and rectifies them.
+- Data transformation: Converts data from legacy or host format to warehouse format.
+- Load: This sorts, summarizes, consolidates, checks integrity and builds indices and partitions.
+- Refresh: This propagates the updates from the data sources to the warehouse (Inmon, 2005).
+
+Fig 11. Information Systems Comparative and Functional Variation Analysis
+
+10. System Design Concepts
+
+10.1 Vertical Scaling
+Vertical scaling means upgrading the hardware/software of the existing system. Adding more power to it, more RAM, CPU's and HDD. But with vertical scaling there is always a limit beyond which it cannot go higher.
+
+10.2 Horizontal Scaling
+Horizontal scaling means adding multiple additional systems to improve the performance. Typically we might use several low end commodity hardware to save the cost.
+
+10.3 Load Balancing
+This helps distribute incoming traffic across servers or databases. There are 2 types of load balancers: hardware and software. Hardware load balancers are generally expensive but very effective.
+
+10.4 Caching
+This is a concept where data is stored in fast memory for quick access. The cache is generally a temporary storage like RAM.
+
+10.5 Consistent Hashing
+Consistent hashing is used in distributed systems to keep the hash table independent of the number of servers available to minimize key relocation when changes of scale occur.
+
+10.6 Storage
+Object store or object-based storage is a storage architecture which manages data as objects unlike the regular hard disks which manages it as files in a file hierarchy system (Tanenbaum and Bos, 2014).
+
+11. Evaluation of Different System Design Methodologies
+
+11.1 Agile Development Methodology
+
+The Agile software development methodology is one of the simplest and effective processes to turn a vision for a business need into software solutions. It encourages flexible responses and change (Beck et al., 2001).
+
+11.2 DevOps Deployment Methodology
+
+DevOps is a software development methodology that combines software development (Dev) with information technology operations (Ops) participating together in the entire service lifecycle, from design through the development process to production support (Kim et al., 2016).
+
+ Fig 12. DevOps Lifecycle
+
+ 11.3 Waterfall Development Method
+
+The waterfall model is a classical model used in the system development life cycle to create a system with a linear and sequential approach. Simple and easy to use (Royce, 1970).
+
+Fig 13. Waterfall Development Method
+
+11.4 Rapid Application Development 
+
+RAD Model or Rapid Application Development model is a software development process based on prototyping without any specific planning and there is less attention paid to planning and more priority is given to the development tasks (Martin, 1991).
+
+
+Fig 14. RAD phases
+Fig 15. Software Development Methodology Comparison
+
+
+12. Conclusion
+
+Systems Analysis and Design plays an important role in the software development lifecycle.SAD provides structured methodologies for understanding, designing, and implementing information systems. The various development approaches, starting from traditional waterfall to modern agile methodologies, each has its own necessity based on the requirements of the system. Understanding these methodologies and their appropriate application is essential to bring out a successful software development project.
+
+
+
+References
+Bass, L., Clements, P. and Kazman, R. (2012) Software Architecture in Practice. 3rd edn. Boston: Addison-Wesley.
+Beck, K. et al. (2001) Manifesto for Agile Software Development. Available at: http://agilemanifesto.org/ (Accessed: 20 October 2025).
+Boehm, B.W. (1988) 'A Spiral Model of Software Development and Enhancement', Computer, 21(5), pp. 61-72.
+Booch, G., Rumbaugh, J. and Jacobson, I. (2005) The Unified Modeling Language User Guide. 2nd edn. Boston: Addison-Wesley.
+Burge Hughes Walsh (n.d.) Hard Systems Methodology. Available at: https://www.burgehugheswalsh.co.uk/Uploaded/1/Documents/Hard-Systems-Methodology.pdf (Accessed: 25 October 2025).
+Checkland, P. (1999) Systems Thinking, Systems Practice. Chichester: John Wiley & Sons.
+Checkland, P. and Poulter, J. (2006) Learning for Action: A Short Definitive Account of Soft Systems Methodology and Its Use for Practitioners, Teachers and Students. Chichester: John Wiley & Sons.
+Chung, L. et al. (2012) Non-Functional Requirements in Software Engineering. New York: Springer.
+Dennis, A., Wixom, B.H. and Roth, R.M. (2015) Systems Analysis and Design. 6th edn. Hoboken: John Wiley & Sons.
+Forsberg, K. and Mooz, H. (1991) 'The Relationship of System Engineering to the Project Cycle', INCOSE International Symposium, 1(1), pp. 57-65.
+GeeksforGeeks (n.d.) Software Development Life Cycle (SDLC). Available at: https://www.geeksforgeeks.org/software-development-life-cycle-sdlc/ (Accessed: 25 October 2025).
+IEEE (2011) IEEE Standard 29148-2011: Systems and Software Engineering - Life Cycle Processes - Requirements Engineering. New York: IEEE.
+Inmon, W.H. (2005) Building the Data Warehouse. 4th edn. Indianapolis: John Wiley & Sons.
+Kaba, A. and Said, R. (2024) 'Introduction to Soft Systems Methodology', ResearchGate. Available at: https://www.researchgate.net/publication/377866641_Introduction_to_Soft_Systems_Methodology (Accessed: 25 October 2025).
+Kendall, K.E. and Kendall, J.E. (2014) Systems Analysis and Design. 9th edn. Harlow: Pearson Education.
+Kim, G. et al. (2016) The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations. Portland: IT Revolution Press.
+Laudon, K.C. and Laudon, J.P. (2020) Management Information Systems: Managing the Digital Firm. 16th edn. Harlow: Pearson Education.
+Martin, J. (1991) Rapid Application Development. New York: Macmillan.
+O'Brien, J.A. and Marakas, G.M. (2011) Management Information Systems. 10th edn. New York: McGraw-Hill.
+Power, D.J. (2002) Decision Support Systems: Concepts and Resources for Managers. Westport: Greenwood Publishing Group.
+Pressman, R.S. and Maxim, B.R. (2020) Software Engineering: A Practitioner's Approach. 9th edn. New York: McGraw-Hill Education.
+Royce, W.W. (1970) 'Managing the Development of Large Software Systems', Proceedings of IEEE WESCON, 26(8), pp. 1-9.
+Sommerville, I. (2016) Software Engineering. 10th edn. Harlow: Pearson Education.
+Tanenbaum, A.S. and Bos, H. (2014) Modern Operating Systems. 4th edn. Harlow: Pearson Education.
+Whitten, J.L. and Bentley, L.D. (2007) Systems Analysis and Design Methods. 7th edn. New York: McGraw-Hill.
+
+
