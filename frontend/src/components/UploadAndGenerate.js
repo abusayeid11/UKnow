@@ -103,23 +103,26 @@ const UploadAndGenerate = ({ onSetGenerated, userId }) => {
 
   return (
     <div className="card">
+      <div className="card-header">
+        <h1 className="card-title">Generate Flashcards</h1>
+        <p className="card-subtitle">Upload educational content to automatically generate AI-powered flashcards</p>
+      </div>
+      
       <div className="upload-container">
-        <h2 className="section-title">Generate Flashcards</h2>
-        
-        <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+        <div className="upload-modes">
           <button 
-            className={`nav-button ${inputMode === 'file' ? 'active' : ''}`}
+            className={`upload-mode-button ${inputMode === 'file' ? 'active' : ''}`}
             onClick={() => setInputMode('file')}
             type="button"
           >
-            📄 Upload PDF
+            📄 Upload PDF Document
           </button>
           <button 
-            className={`nav-button ${inputMode === 'text' ? 'active' : ''}`}
+            className={`upload-mode-button ${inputMode === 'text' ? 'active' : ''}`}
             onClick={() => setInputMode('text')}
             type="button"
           >
-            ✏️ Enter Text
+            ✏️ Enter Text Content
           </button>
         </div>
 
@@ -132,12 +135,12 @@ const UploadAndGenerate = ({ onSetGenerated, userId }) => {
               onDrop={handleDrop}
               onClick={() => document.getElementById('file-upload').click()}
             >
-              <div className="upload-icon">📄</div>
+              <span className="upload-icon">📄</span>
               <div className="upload-text">
-                {file ? file.name : 'Drop your PDF here or click to browse'}
+                {file ? file.name : 'Drop your PDF document here or click to browse'}
               </div>
-              <div style={{ color: '#999', fontSize: '0.9rem' }}>
-                Supports PDF files up to 10MB
+              <div className="upload-hint">
+                Supports PDF files up to 16MB • Academic papers, textbooks, lecture notes
               </div>
               <input
                 id="file-upload"
@@ -154,55 +157,62 @@ const UploadAndGenerate = ({ onSetGenerated, userId }) => {
                 placeholder="Enter a title for your flashcard set (optional)"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  border: '2px solid #e0e0e0',
-                  borderRadius: '10px',
-                  fontSize: '1rem',
-                  marginBottom: '1rem'
-                }}
+                className="text-input"
+                style={{ marginBottom: 'var(--space-4)' }}
               />
               <textarea
-                className="text-input-area"
-                placeholder="Paste your educational content here... (minimum 50 characters)"
+                className="text-input text-area"
+                placeholder="Paste your educational content here... Lecture notes, study materials, or any learning content (minimum 50 characters)"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 required
               />
-              <div style={{ color: '#999', fontSize: '0.9rem', marginBottom: '1rem' }}>
+              <div style={{ 
+                color: 'var(--gray-500)', 
+                fontSize: 'var(--font-size-sm)', 
+                marginTop: 'var(--space-2)',
+                marginBottom: 'var(--space-4)'
+              }}>
                 Characters: {text.length} / 50 minimum
               </div>
             </div>
           )}
 
-          {error && <div className="error-message">{error}</div>}
-          {success && <div className="success-message">{success}</div>}
+          {error && <div className="alert alert-error">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
 
           <button 
             type="submit" 
-            className="upload-button"
+            className="primary-button"
             disabled={loading || (inputMode === 'file' && !file) || (inputMode === 'text' && text.length < 50)}
           >
             {loading ? (
               <div className="loading">
                 <div className="spinner"></div>
-                <span>Generating flashcards...</span>
+                <span className="loading-text">Processing content and generating flashcards...</span>
               </div>
             ) : (
-              '🚀 Generate Flashcards'
+              'Generate Flashcards'
             )}
           </button>
         </form>
 
-        <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#f8f9fa', borderRadius: '10px' }}>
-          <h3 style={{ color: '#333', marginBottom: '1rem' }}>How it works:</h3>
-          <ol style={{ color: '#666', lineHeight: '1.6', paddingLeft: '1.5rem' }}>
-            <li>Upload a PDF document or enter text content</li>
-            <li>Our AI extracts key terms and concepts</li>
-            <li>Smart questions are generated for each term</li>
-            <li>Study the flashcards and track your progress</li>
-            <li>Get personalized feedback on your performance</li>
+        <div className="analysis-section" style={{ marginTop: 'var(--space-8)' }}>
+          <div className="section-header">
+            <span className="section-icon">ℹ️</span>
+            <h3 className="section-title" style={{ fontSize: 'var(--font-size-lg)' }}>How It Works</h3>
+          </div>
+          <ol style={{ 
+            color: 'var(--gray-700)', 
+            lineHeight: '1.7', 
+            paddingLeft: 'var(--space-6)',
+            fontSize: 'var(--font-size-base)'
+          }}>
+            <li style={{ marginBottom: 'var(--space-2)' }}>Upload a PDF document or enter educational text content</li>
+            <li style={{ marginBottom: 'var(--space-2)' }}>AI analyzes content and extracts key terms and concepts</li>
+            <li style={{ marginBottom: 'var(--space-2)' }}>Intelligent questions are generated for each important term</li>
+            <li style={{ marginBottom: 'var(--space-2)' }}>Study using our interactive flashcard interface</li>
+            <li style={{ marginBottom: 'var(--space-2)' }}>Track your understanding and get personalized recommendations</li>
           </ol>
         </div>
       </div>

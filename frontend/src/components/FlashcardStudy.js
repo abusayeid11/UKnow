@@ -87,23 +87,36 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
   }
 
   return (
-    <div>
-      {/* Progress Bar */}
+    <div className="flashcard-container">
+      {/* Progress Tracking */}
       <div className="study-progress">
-        <div>Card {currentIndex + 1} of {flashcards.length}</div>
+        <div className="progress-header">
+          <div className="progress-title">Study Progress</div>
+          <div className="progress-counter">Card {currentIndex + 1} of {flashcards.length}</div>
+        </div>
         <div className="progress-bar">
           <div 
             className="progress-fill" 
             style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginTop: '0.5rem' }}>
-          <span style={{ color: '#4CAF50' }}>✓ {studySession.correct}</span>
-          <span style={{ color: '#f44336' }}>✗ {studySession.incorrect}</span>
+        <div className="progress-stats">
+          <div className="progress-stat">
+            <div className="progress-stat-number stat-correct">✓ {studySession.correct}</div>
+            <div className="progress-stat-label">I Understand</div>
+          </div>
+          <div className="progress-stat">
+            <div className="progress-stat-number stat-incorrect">✗ {studySession.incorrect}</div>
+            <div className="progress-stat-label">Need Work</div>
+          </div>
+          <div className="progress-stat">
+            <div className="progress-stat-number stat-progress">{Math.round(progressPercentage)}%</div>
+            <div className="progress-stat-label">Complete</div>
+          </div>
         </div>
       </div>
 
-      {/* Flashcard */}
+      {/* Flashcard Interface */}
       <div 
         className={`flashcard ${isFlipped ? 'flipped' : ''}`}
         onClick={handleFlip}
@@ -120,12 +133,7 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
               <div className="flashcard-term">{currentCard.term}</div>
               <div className="flashcard-answer">{currentCard.answer}</div>
               {currentCard.context && currentCard.context !== currentCard.answer && (
-                <div style={{ 
-                  marginTop: '1rem', 
-                  fontSize: '0.9rem', 
-                  opacity: 0.8,
-                  fontStyle: 'italic'
-                }}>
+                <div className="flashcard-context">
                   Context: {currentCard.context.substring(0, 200)}...
                 </div>
               )}
@@ -135,20 +143,22 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
         </div>
       </div>
 
-      {/* Study Controls - Only show when answer is revealed */}
+      {/* Binary Feedback System - Only show when answer is revealed */}
       {isFlipped && (
         <div className="study-controls">
           <button 
-            className="control-button incorrect-button"
+            className="feedback-button not-understand-button"
             onClick={() => handleResponse('incorrect')}
           >
-            ❌ Need Work
+            <span className="feedback-icon">✗</span>
+            I don't understand
           </button>
           <button 
-            className="control-button correct-button"
+            className="feedback-button understand-button"
             onClick={() => handleResponse('correct')}
           >
-            ✅ Got It!
+            <span className="feedback-icon">✓</span>
+            I understand
           </button>
         </div>
       )}
@@ -163,30 +173,29 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
           ← Previous
         </button>
         
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-4)' }}>
           <button 
             className="nav-control"
             onClick={handleFlip}
           >
-            {isFlipped ? '🔄 Show Question' : '👁️ Show Answer'}
+            {isFlipped ? 'Show Question' : 'Show Answer'}
           </button>
           
           {!isLastCard && (
             <button 
-              className="nav-control"
+              className="nav-control secondary"
               onClick={moveToNext}
             >
-              Skip →
+              Skip Card →
             </button>
           )}
         </div>
         
         <button 
-          className="nav-control"
+          className="nav-control danger"
           onClick={resetSession}
-          style={{ background: 'rgba(244, 67, 54, 0.1)', borderColor: '#f44336', color: '#f44336' }}
         >
-          🔄 Restart
+          🔄 Restart Session
         </button>
       </div>
 

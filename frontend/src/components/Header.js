@@ -18,7 +18,7 @@ const Header = ({ flashcardSets, onSetSelected }) => {
 
   return (
     <header className="header">
-      <h1>🧠 UKnow</h1>
+      <h1>UKnow</h1>
       <p>AI-Enhanced Educational Flashcard Generator</p>
       
       <nav className="nav">
@@ -26,38 +26,35 @@ const Header = ({ flashcardSets, onSetSelected }) => {
           className={`nav-button ${getActiveView() === 'upload' ? 'active' : ''}`}
           onClick={() => handleViewChange('upload')}
         >
-          📤 Upload & Generate
+          <span>�</span> Upload & Generate
         </button>
         <button 
           className={`nav-button ${getActiveView() === 'study' ? 'active' : ''}`}
           onClick={() => handleViewChange('study')}
         >
-          📚 Study
+          <span>🎓</span> Study Session
         </button>
         <button 
           className={`nav-button ${getActiveView() === 'analysis' ? 'active' : ''}`}
           onClick={() => handleViewChange('analysis')}
         >
-          📊 Analysis
+          <span>📊</span> Performance Analysis
         </button>
       </nav>
 
       {flashcardSets.length > 0 && (
-        <div style={{ marginTop: '1rem' }}>
+        <div style={{ marginTop: 'var(--space-4)' }}>
           <select 
             onChange={(e) => onSetSelected(parseInt(e.target.value))}
+            className="text-input"
             style={{
-              background: 'rgba(255, 255, 255, 0.2)',
-              color: 'white',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              padding: '0.5rem',
-              borderRadius: '10px',
-              marginRight: '1rem'
+              maxWidth: '400px',
+              color: 'var(--gray-800)'
             }}
           >
             <option value="">Select a flashcard set...</option>
             {flashcardSets.map(set => (
-              <option key={set.id} value={set.id} style={{ color: 'black' }}>
+              <option key={set.id} value={set.id}>
                 {set.title} ({set.flashcard_count} cards)
               </option>
             ))}
