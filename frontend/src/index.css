@@ -437,10 +437,10 @@ body {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
+  background: var(--white);
 }
 
 .understand-button {
-  background-color: var(--white);
   color: var(--success-green);
   border-color: var(--success-green);
 }
@@ -453,7 +453,6 @@ body {
 }
 
 .not-understand-button {
-  background-color: var(--white);
   color: var(--error-red);
   border-color: var(--error-red);
 }
@@ -1000,4 +999,159 @@ body {
   .stats-number {
     font-size: var(--font-size-3xl);
   }
+}
+
+/* AI Enhancement Features */
+.ai-controls {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-6) 0;
+}
+
+.ai-enhance-button {
+  background: linear-gradient(135deg, var(--primary-teal), var(--accent-blue));
+  color: var(--white);
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-md);
+}
+
+.ai-enhance-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ai-icon {
+  font-size: var(--font-size-lg);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-4);
+}
+
+.modal-container {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.2s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* AI Enhancement Panel Styles */
+.ai-enhancement-panel {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-6);
+}
+
+.enhancement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  color: var(--gray-500);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+.enhancement-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.enhancement-section {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.enhancement-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.enhancement-icon {
+  font-size: var(--font-size-lg);
+}
+
+.enhancement-title {
+  color: var(--gray-800);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.enhancement-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.enhancement-result {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary-teal);
+}
+
+/* Color variables for difficulty badges */
+:root {
+  /* ...existing variables... */
+  --success-light: #ecfdf5;
+  --success-dark: #065f46;
+  --warning-light: #fffbeb;
+  --warning-dark: #92400e;
+  --error-light: #fef2f2;
+  --error-dark: #991b1b;
 }

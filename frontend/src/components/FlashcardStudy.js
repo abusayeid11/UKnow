@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import AIEnhancementPanel from './AIEnhancementPanel';
 
 const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showAIPanel, setShowAIPanel] = useState(false);
   const [studySession, setStudySession] = useState({
     correct: 0,
     incorrect: 0,
@@ -52,11 +54,22 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
   const resetSession = () => {
     setCurrentIndex(0);
     setIsFlipped(false);
+    setShowAIPanel(false);
     setStudySession({
       correct: 0,
       incorrect: 0,
       completed: []
     });
+  };
+
+  const handleAISummarize = (summaryData) => {
+    console.log('Summary generated:', summaryData);
+    // Could store summary for later use or analytics
+  };
+
+  const handleAITranslate = (translationData) => {
+    console.log('Translation generated:', translationData);
+    // Could store translation for later use or analytics
   };
 
   const progressPercentage = ((currentIndex + 1) / flashcards.length) * 100;
@@ -163,6 +176,18 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
         </div>
       )}
 
+      {/* AI Enhancement Button */}
+      <div className="ai-controls">
+        <button 
+          className="ai-enhance-button"
+          onClick={() => setShowAIPanel(true)}
+          title="AI Enhancement Tools - Summarize and Translate"
+        >
+          <span className="ai-icon">🤖</span>
+          AI Tools
+        </button>
+      </div>
+
       {/* Navigation Controls */}
       <div className="study-navigation">
         <button 
@@ -228,6 +253,21 @@ const FlashcardStudy = ({ flashcards, onPerformanceRecord, userId }) => {
           <div style={{ fontSize: '0.9rem', color: '#666' }}>Progress</div>
         </div>
       </div>
+
+      {/* AI Enhancement Panel Modal */}
+      {showAIPanel && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <AIEnhancementPanel
+              flashcard={currentCard}
+              isVisible={showAIPanel}
+              onClose={() => setShowAIPanel(false)}
+              onSummarize={handleAISummarize}
+              onTranslate={handleAITranslate}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

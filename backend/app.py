@@ -3,10 +3,17 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
+from sqlalchemy import inspect
 import PyPDF2
 import re
 from collections import Counter
 import random
+import logging
+from deep_learning_service import dl_service
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -46,6 +53,7 @@ class Flashcard(db.Model):
     question = db.Column(db.Text, nullable=False)
     answer = db.Column(db.Text, nullable=False)
     context = db.Column(db.Text)
+    difficulty_level = db.Column(db.String(20), default='medium')  # easy, medium, hard
     set_id = db.Column(db.Integer, db.ForeignKey('flashcard_set.id'), nullable=False)
     performance_records = db.relationship('PerformanceRecord', backref='flashcard', lazy=True)
 
@@ -213,11 +221,19 @@ def upload_and_generate():
             question = generate_question(term, context)
             answer = generate_answer_from_context(term, context)
             
+            # Analyze difficulty level
+            try:
+                complexity = dl_service.analyze_text_complexity(f"{term} {context}")
+                difficulty = complexity.get('difficulty_level', 'medium')
+            except:
+                difficulty = 'medium'  # Default fallback
+            
             flashcard = Flashcard(
                 term=term,
                 question=question,
                 answer=answer,
                 context=context,
+                difficulty_level=difficulty,
                 set_id=flashcard_set.id
             )
             db.session.add(flashcard)
@@ -227,15 +243,17 @@ def upload_and_generate():
                 'term': term,
                 'question': question,
                 'answer': answer,
-                'context': context
+                'context': context,
+                'difficulty_level': difficulty
             })
         
         db.session.commit()
         
-        # Update flashcard IDs
+        # Update flashcard IDs and difficulty
         flashcards = Flashcard.query.filter_by(set_id=flashcard_set.id).all()
         for i, flashcard in enumerate(flashcards):
             flashcards_data[i]['id'] = flashcard.id
+            flashcards_data[i]['difficulty_level'] = flashcard.difficulty_level
         
         return jsonify({
             'set_id': flashcard_set.id,
@@ -406,7 +424,8 @@ def get_flashcard_set(set_id):
                 'term': flashcard.term,
                 'question': flashcard.question,
                 'answer': flashcard.answer,
-                'context': flashcard.context
+                'context': flashcard.context,
+                'difficulty_level': flashcard.difficulty_level
             })
         
         return jsonify({
@@ -426,15 +445,109 @@ def health_check():
     """Simple health check endpoint"""
     return jsonify({'status': 'OK', 'message': 'UKnow backend is running!'})
 
+@app.route('/api/summarize', methods=['POST'])
+def summarize_content():
+    """AI-Powered Summarization endpoint"""
+    try:
+        data = request.json
+        text = data.get('text')
+        method = data.get('method', 'lexrank')  # lexrank, lsa, textrank
+        sentence_count = data.get('sentence_count', 3)
+        
+        if not text:
+            return jsonify({'error': 'No text provided for summarization'}), 400
+        
+        # Generate summary using Deep Learning Service
+        summary = dl_service.summarize_text(
+            text=text,
+            sentence_count=sentence_count,
+            method=method
+        )
+        
+        # Analyze complexity
+        complexity = dl_service.analyze_text_complexity(text)
+        
+        return jsonify({
+            'summary': summary,
+            'original_length': len(text),
+            'summary_length': len(summary),
+            'compression_ratio': round((1 - len(summary) / len(text)) * 100, 1),
+            'method_used': method,
+            'sentence_count': sentence_count,
+            'complexity_analysis': complexity
+        })
+        
+    except Exception as e:
+        logger.error(f"Summarization API error: {e}")
+        return jsonify({'error': f'Summarization failed: {str(e)}'}), 500
+
+@app.route('/api/translate', methods=['POST'])
+def translate_content():
+    """Neural Machine Translation endpoint"""
+    try:
+        data = request.json
+        text = data.get('text')
+        target_language = data.get('target_language', 'es')
+        preserve_technical = data.get('preserve_technical_terms', True)
+        
+        if not text:
+            return jsonify({'error': 'No text provided for translation'}), 400
+        
+        # Perform translation using Deep Learning Service
+        translation_result = dl_service.translate_text(
+            text=text,
+            target_language=target_language,
+            preserve_technical_terms=preserve_technical
+        )
+        
+        return jsonify(translation_result)
+        
+    except Exception as e:
+        logger.error(f"Translation API error: {e}")
+        return jsonify({'error': f'Translation failed: {str(e)}'}), 500
+
+@app.route('/api/supported_languages', methods=['GET'])
+def get_supported_languages():
+    """Get list of supported translation languages"""
+    try:
+        languages = dl_service.get_supported_languages()
+        return jsonify({
+            'languages': languages,
+            'count': len(languages)
+        })
+    except Exception as e:
+        return jsonify({'error': f'Failed to get languages: {str(e)}'}), 500
+
 # Initialize database
 def create_tables():
     db.create_all()
+
+# Database Migration Functions
+def migrate_database():
+    """Apply database migrations for new schema changes"""
+    try:
+        # Check if difficulty_level column exists
+        inspector = inspect(db.engine)
+        columns = [column['name'] for column in inspector.get_columns('flashcard')]
+        
+        if 'difficulty_level' not in columns:
+            print("Adding difficulty_level column to flashcard table...")
+            with db.engine.connect() as conn:
+                conn.execute(db.text("ALTER TABLE flashcard ADD COLUMN difficulty_level VARCHAR(20) DEFAULT 'medium'"))
+                conn.commit()
+            print("difficulty_level column added successfully")
+        else:
+            print("difficulty_level column already exists")
+            
+    except Exception as e:
+        print(f"Migration error: {e}")
 
 if __name__ == '__main__':
     print("Starting UKnow backend server...")
     try:
         with app.app_context():
             db.create_all()
+            migrate_database()
             print("Database initialized successfully")
         print("Server starting on http://localhost:5000")
         app.run(debug=True, port=5000, host='0.0.0.0')
